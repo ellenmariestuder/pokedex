@@ -20,15 +20,15 @@ let pokemonList = [
   }
 ];
 
-// create for loop to print pokemon name + height
-for (let i = 0; i < pokemonList.length; i++) {
-
+// use forEach to write pokemon data to DOM
+pokemonList.forEach((item) => {
   // establish data we want to write document
-  let pokeNameHeight = pokemonList[i].name + " (height: " + pokemonList[i].height + ")";
+  let pokeNameHeight = item.name + " (height: " + item.height + ")";
 
   // modify to insert conditional note re height
-  let pokeWrite = pokemonList[i].height > 10 ? `${pokeNameHeight} - Wow, that's big! <br/>` : `${pokeNameHeight}  <br/>`;
+  let pokeWrite = item.height > 10 ? `${pokeNameHeight} - Wow, that's big! <br/>` : `${pokeNameHeight}  <br/>`;
 
   // write to DOM
   document.write(pokeWrite);
-}
+
+});

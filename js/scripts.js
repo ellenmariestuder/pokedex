@@ -24,28 +24,50 @@ let pokemonRepository = (function() {
 
   function add(pokemon) {
     pokemonList.push(pokemon);
-  }
+  };
 
   function getAll() {
     return pokemonList;
+  };
+
+  function addListItem(pokemon) {
+    // "create a variable inside the function and assign to the 'ul' element in index"
+    let ulPokeList = document.querySelector('ul');
+
+    // create 'li' element
+    let ulPokeListItem = document.createElement('li');
+
+    // create button element
+    let button = document.createElement('button');
+    button.innerText = pokemon;       // set button text to be pokemon name
+    button.classList.add('button');     // set button class
+    ulPokeListItem.appendChild(button); // append button element to list item
+    button.addEventListener('click', function() {
+      showDetails(pokemon);
+    });
+
+    //append list item to unordered list (as child)
+    ulPokeList.appendChild(ulPokeListItem);
+  };
+
+  function showDetails(pokemon) {
+    console.log(pokemon);
   }
 
   return {
     add: add,
-    getAll: getAll
+    getAll: getAll,
+    addListItem: addListItem
   };
 
 }) ();
 
+
+
 // use forEach to write pokemon data to DOM
 pokemonRepository.getAll().forEach((item) => {
-  // establish data we want to write document
-  let pokeNameHeight = item.name + " (height: " + item.height + ")";
 
-  // modify to insert conditional note re height
-  let pokeWrite = item.height > 10 ? `${pokeNameHeight} - Wow, that's big! <br/>` : `${pokeNameHeight}  <br/>`;
-
-  // write to DOM
-  document.write(pokeWrite);
+  //write pokemon name as button to DOM
+  pokemonRepository.addListItem(item.name);
 
 });

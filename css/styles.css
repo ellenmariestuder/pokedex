@@ -1,0 +1,46 @@
+
+/* format buttons */
+button,
+.button  {
+  border: none;
+  display: inline-block;
+  width: 30%;
+  /* font-family: inherit;    (will add these later!)
+  background-color: var(--primary-color);
+  color: var(--text-color-1); */
+  text-decoration: none;
+  padding: 10px;
+  transition: opacity 0.5s;
+}
+
+button:hover, button:focus,
+.button:hover,
+.button:focus {
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+/* format list items */
+.pokemon-list {
+  list-style-type: none;
+}
+
+.pokemon-list li {
+  margin: 0;
+  padding: 7px;
+}
+
+/* make responsive on all screen sizes */
+@media all and (min-width: 500px) and (max-width: 750px) {
+  button,
+  .button {
+    width: 50%;
+  }
+}
+
+@media all and (max-width: 500px) {
+  button,
+  .button {
+    width: 100%;
+  }
+}

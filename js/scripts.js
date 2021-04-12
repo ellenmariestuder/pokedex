@@ -3,24 +3,9 @@
 let pokemonRepository = (function() {
 
   // establish 'pokemonList'
-  let pokemonList = [
-    // add pokemon data
-    {
-      name: "onix",
-      height: 15,
-      types: ["rock", "ground"]
-    },
-    {
-      name: "ratatat",
-      height: 1,
-      types: ["pest", "normal"]
-    },
-    {
-      name: "pidgeotto",
-      height: 2,
-      types: ["bird", "normal"]
-    }
-  ];
+  let pokemonList = [];
+
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   function add(pokemon) {
     pokemonList.push(pokemon);
@@ -50,24 +35,62 @@ let pokemonRepository = (function() {
     ulPokeList.appendChild(ulPokeListItem);
   };
 
+  // print pokemon details to console
   function showDetails(pokemon) {
-    console.log(pokemon);
+    loadDetails(pokemon).then (function () {
+      console.log(pokemon);
+    });
   }
 
+  // load pokemn details from API (will be called on 'click' event)
+  function loadDetails (pokemon) {
+    let url = pokemon.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    });
+  }
+
+  // load full list of pokemon from API
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
+  }
+
+  // return functions
   return {
     add: add,
     getAll: getAll,
-    addListItem: addListItem
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails
   };
 
 }) ();
 
+pokemonRepository.loadList().then(function() {
 
+  // use forEach to write pokemon data to DOM
+  pokemonRepository.getAll().forEach(function (item) {
+    //write pokemon name as button to DOM
+    pokemonRepository.addListItem(item.name);
+    //pokemonRepository.addListItem(pokemon);
 
-// use forEach to write pokemon data to DOM
-pokemonRepository.getAll().forEach((item) => {
-
-  //write pokemon name as button to DOM
-  pokemonRepository.addListItem(item.name);
-
+  });
 });

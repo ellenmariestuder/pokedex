@@ -24,7 +24,7 @@ let pokemonRepository = (function() {
 
     // create button element
     let button = document.createElement('button');
-    button.innerText = pokemon;       // set button text to be pokemon name
+    button.innerText = pokemon.name;    // set button text to be pokemon name
     button.classList.add('button');     // set button class
     ulPokeListItem.appendChild(button); // append button element to list item
     button.addEventListener('click', function() {
@@ -43,14 +43,14 @@ let pokemonRepository = (function() {
   }
 
   // load pokemn details from API (will be called on 'click' event)
-  function loadDetails (pokemon) {
-    let url = pokemon.detailsUrl;
+  function loadDetails (item) {
+    let url = item.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
-      item.types = details.types;
+      item.types = Object.keys(details.types);
     }).catch(function (e) {
       console.error(e);
     });
@@ -88,9 +88,9 @@ pokemonRepository.loadList().then(function() {
 
   // use forEach to write pokemon data to DOM
   pokemonRepository.getAll().forEach(function (item) {
+
     //write pokemon name as button to DOM
-    pokemonRepository.addListItem(item.name);
-    //pokemonRepository.addListItem(pokemon);
+    pokemonRepository.addListItem(item);
 
   });
 });

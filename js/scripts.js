@@ -2,6 +2,9 @@
 // create pokemonRepository to hold pokemonList + IIFE
 let pokemonRepository = (function() {
 
+  // identify modal container
+  let modalContainer = document.querySelector('#modal-container');
+
   // establish 'pokemonList'
   let pokemonList = [];
 
@@ -24,9 +27,10 @@ let pokemonRepository = (function() {
 
     // create button element
     let button = document.createElement('button');
-    button.innerText = pokemon.name;    // set button text to be pokemon name
-    button.classList.add('button');     // set button class
-    ulPokeListItem.appendChild(button); // append button element to list item
+    button.innerText = pokemon.name;        // set button text to be pokemon name
+    button.classList.add('button');         // set button class
+    button.setAttribute('id','show-modal'); // set button id
+    ulPokeListItem.appendChild(button);     // append button element to list item
     button.addEventListener('click', function() {
       showDetails(pokemon);
     });
@@ -38,9 +42,62 @@ let pokemonRepository = (function() {
   // print pokemon details to console
   function showDetails(pokemon) {
     loadDetails(pokemon).then (function () {
-      console.log(pokemon);
+      //console.log(pokemon);
+      let title = pokemon.name;
+      let text = 'Height: ' + pokemon.height;
+      let imageUrl = pokemon.imageUrl;
+      showModal(title, text, imageUrl);
     });
   }
+
+  // show modal (will be called inside event listener)
+  function showModal (title, text, imageUrl) {
+
+    let modalContainer = document.querySelector('#modal-container');
+    modalContainer.innerHTML = '';
+
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    let closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'x';
+    closeButtonElement.addEventListener('click', hideModal);
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = title;
+    let contentElement = document.createElement('p');
+    contentElement.innerText = text;
+    let imageElement = document.createElement('img');
+    imageElement.setAttribute('src', imageUrl);
+    imageElement.setAttribute('id', 'modal-image');
+
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(titleElement);
+    modal.appendChild(contentElement);
+    modal.appendChild(imageElement);
+    modalContainer.appendChild(modal);
+
+    modalContainer.classList.add('is-visible');
+
+  }
+
+  function hideModal() {
+    modalContainer.classList.remove('is-visible');
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible'))
+    {
+      hideModal();
+    }
+  });
+
+  modalContainer.addEventListener('click', (e) => {
+    let target = e.target;
+    if (target === modalContainer) {
+      hideModal();
+    }
+  });
 
   // load pokemn details from API (will be called on 'click' event)
   function loadDetails (item) {

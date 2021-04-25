@@ -18,6 +18,10 @@ let pokemonRepository = (function() {
     return pokemonList;
   };
 
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
   function addListItem(pokemon) {
     // "create a variable inside the function and assign to the 'ul' element in index"
     let ulPokeList = document.querySelector('ul');
@@ -27,77 +31,44 @@ let pokemonRepository = (function() {
 
     // create button element
     let button = document.createElement('button');
-    button.innerText = pokemon.name;        // set button text to be pokemon name
-    button.classList.add('button');         // set button class
-    button.setAttribute('id','show-modal'); // set button id
-    ulPokeListItem.appendChild(button);     // append button element to list item
+    button.innerText = capitalize(pokemon.name);
+    button.classList.add('btn');
+    button.classList.add('group-list-item');
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#poke-modal');
+    ulPokeListItem.appendChild(button);
     button.addEventListener('click', function() {
-      showDetails(pokemon);
+      showModal(pokemon);
     });
 
     //append list item to unordered list (as child)
     ulPokeList.appendChild(ulPokeListItem);
   };
 
-  // print pokemon details to console
-  function showDetails(pokemon) {
-    loadDetails(pokemon).then (function () {
-      //console.log(pokemon);
-      let title = pokemon.name;
-      let text = 'Height: ' + pokemon.height;
-      let imageUrl = pokemon.imageUrl;
-      showModal(title, text, imageUrl);
-    });
-  }
-
   // show modal (will be called inside event listener)
-  function showModal (title, text, imageUrl) {
+  function showModal (item) {
 
-    let modalContainer = document.querySelector('#modal-container');
-    modalContainer.innerHTML = '';
+    loadDetails(item).then (function () {
 
-    let modal = document.createElement('div');
-    modal.classList.add('modal');
+      let modalHeader = $('.modal-header');
+      let modalTitle = $('.modal-title');
+      let modalBody = $('.modal-body');
 
-    let closeButtonElement = document.createElement('button');
-    closeButtonElement.classList.add('modal-close');
-    closeButtonElement.innerText = 'x';
-    closeButtonElement.addEventListener('click', hideModal);
-    let titleElement = document.createElement('h1');
-    titleElement.innerText = title;
-    let contentElement = document.createElement('p');
-    contentElement.innerText = text;
-    let imageElement = document.createElement('img');
-    imageElement.setAttribute('src', imageUrl);
-    imageElement.setAttribute('id', 'modal-image');
+      modalTitle.empty();
+      modalBody.empty();
 
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
-    modal.appendChild(imageElement);
-    modalContainer.appendChild(modal);
+      let nameElement = $('<h1>' + capitalize(item.name) + '</h1>');
+      let heightElement = $('<p>' + 'Height : ' + item.height + '</p>');
+      let imageElement = $('<img class="modal-img">');
+      imageElement.attr('src', item.imageUrl);
+      imageElement.attr('id', 'modal-image'); 
 
-    modalContainer.classList.add('is-visible');
+      modalTitle.append(nameElement);
+      modalBody.append(heightElement);
+      modalBody.append(imageElement);
 
+    })
   }
-
-  function hideModal() {
-    modalContainer.classList.remove('is-visible');
-  }
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible'))
-    {
-      hideModal();
-    }
-  });
-
-  modalContainer.addEventListener('click', (e) => {
-    let target = e.target;
-    if (target === modalContainer) {
-      hideModal();
-    }
-  });
 
   // load pokemn details from API (will be called on 'click' event)
   function loadDetails (item) {
@@ -111,7 +82,7 @@ let pokemonRepository = (function() {
     }).catch(function (e) {
       console.error(e);
     });
-  }
+  };
 
   // load full list of pokemon from API
   function loadList() {

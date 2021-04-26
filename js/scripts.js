@@ -31,18 +31,16 @@ let pokemonRepository = (function() {
 
     // create button element
     let button = document.createElement('button');
-    button.innerText = capitalize(pokemon.name);
-    button.classList.add('btn');
-    button.classList.add('group-list-item');
-    button.setAttribute('data-toggle', 'modal');
-    button.setAttribute('data-target', '#poke-modal');
-    ulPokeListItem.appendChild(button);
+    $(button).text(capitalize(pokemon.name));
+    $(button).addClass('btn btn-outline-danger btn-width group-list-item');
+    $(button).attr({ 'data-toggle':'modal', 'data-target':'#poke-modal'});
+    ulPokeListItem.append(button);
     button.addEventListener('click', function() {
       showModal(pokemon);
     });
 
     //append list item to unordered list (as child)
-    ulPokeList.appendChild(ulPokeListItem);
+    ulPokeList.append(ulPokeListItem);
   };
 
   // show modal (will be called inside event listener)
@@ -58,13 +56,15 @@ let pokemonRepository = (function() {
       modalBody.empty();
 
       let nameElement = $('<h1>' + capitalize(item.name) + '</h1>');
-      let heightElement = $('<p>' + 'Height : ' + item.height + '</p>');
+      let heightElement = $('<p>' + 'Height: ' + item.height + '</p>');
+      // let typeElement = $('<p>' + 'Type(s): ' + item.types + '</p>');
       let imageElement = $('<img class="modal-img">');
       imageElement.attr('src', item.imageUrl);
-      imageElement.attr('id', 'modal-image'); 
+      imageElement.attr('id', 'modal-image');
 
       modalTitle.append(nameElement);
       modalBody.append(heightElement);
+      // modalBody.append(typeElement);
       modalBody.append(imageElement);
 
     })

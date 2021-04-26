@@ -1,22 +1,59 @@
 
 /* format container */
-.container, .pokemonList, .header-section {
+.container-fluid, .pokemonList, .header-section {
   margin: 25px;
 }
 
+html, body {
+  height: 100%;
+}
+
+.app-title, p {
+  display: inline-block;
+}
+
+.pokemon-list {
+  text-align: center;
+}
+
+.fix__top {
+    position:fixed;
+    top:0px;
+}
+
+.fix__bottom {
+    position:fixed;
+    bottom:0px;
+    height: 2rem;
+}
+
+.body-section {
+  position: absolute;
+  top: 7rem;
+  bottom: 7rem;
+  right: 0;
+  left: 0;
+  overflow: auto;
+}
+
 /* format header section */
+.app-title {
+  padding-left: 3px;
+}
+
 .header-section {
-  height: 25px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  text-align: center;
 }
 
 /* format buttons */
-button,
-.button  {
+button, .button  {
   border: none;
   display: inline-block;
   width: 30%;
   text-decoration: none;
-  padding: 10px;
   transition: opacity 0.5s;
 }
 
@@ -38,17 +75,34 @@ button:hover, button:focus,
 }
 
 /* make responsive on all screen sizes */
-@media all and (min-width: 500px) and (max-width: 750px) {
+@media all and (min-width: 750px) {
   button,
   .button {
+    width: 25%;
+  }
+  .fix__bottom {
+    width: 100%;
+  }
+  .header-section {
+    width: 95%;
+  }
+}
+
+@media all and (min-width: 500px) and (max-width: 750px) {
+  button, .button {
     width: 50%;
+  }
+  .header-section {
+    width: 80%;
   }
 }
 
 @media all and (max-width: 500px) {
-  button,
-  .button {
-    width: 100%;
+  button, .button {
+    width: 65%;
+  }
+  .header-section {
+    height: 70%;
   }
 }
 
@@ -59,11 +113,17 @@ button:hover, button:focus,
 }
 
 .pokeball {
-  height: 3em;
-  float: left;
-  padding-right: 10px; 
+  height: 3rem;
+  padding-right: 3px;
+  vertical-align: top;
 }
 
-.app-title, p {
-  display: inline-block;
+.card-img__bottom {
+  right: 0;
+  left: 0;
+  height: 10rem;
+}
+
+.card-img__bottom {
+  z-index: -1;
 }

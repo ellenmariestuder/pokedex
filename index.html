@@ -9,33 +9,39 @@
   </head>
   <body>
 
-    <div class="container">
-
-      <div class="header-section">
+    <div class="container-fluid">
+      <div class="header-section fix__top">
+        <img class="pokeball" src="https://pngimg.com/uploads/pokeball/pokeball_PNG21.png" alt="pokeball image" />
         <h1 class="app-title">Pokedex</h1>
-        <img class="pokeball" src="https://pngimg.com/uploads/pokeball/pokeball_PNG21.png" />
       </div>
 
-      <ul class="pokemon-list list-group"></ul>
+      <div class="body-section">
+        <ul class="pokemon-list list-group"></ul>
 
-      <div class="modal" id="poke-modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title"></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div class="modal" id="poke-modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="footer-section">
+        <img class="card-img__bottom fix__bottom" src="img/grass-border.jpg" alt="grass border" />
+      </div>
     </div>
+
 
     <script src="js/promise-polyfill.js"></script>
     <script src="js/fetch-polyfill.js"></script>

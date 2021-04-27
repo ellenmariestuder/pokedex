@@ -47,21 +47,30 @@ let pokemonRepository = (function() {
     loadDetails(item).then(function() {
       let modalTitle = $('.modal-title');
       let modalBody = $('.modal-body');
+      let columnLeft = $('.col__left');
+      let columnRight = $('.col__right');
 
       modalTitle.empty();
       modalBody.empty();
+      columnLeft.empty();
+      columnRight.empty();
 
       let nameElement = $('<h1>' + capitalize(item.name) + '</h1>');
-      let heightElement = $('<p>' + 'Height: ' + item.height + '</p>');
-      // let typeElement = $('<p>' + 'Type(s): ' + item.types + '</p>');
+      let heightElement = $('<div>' + '<p>' + 'Height: ' + item.height + '</p>' + '</div>');
+      let typeElement = $('<div>' + '<p>' + 'Type(s): ' + item.types + '</p>' + '</div>');
+      let abilitiesElement = $('<div>' + '<p>' + 'Abilities: ' + item.abilities + '</p>' + '</div>');
       let imageElement = $('<img class="modal-img">');
+
       imageElement.attr('src', item.imageUrl);
       imageElement.attr('id', 'modal-image');
 
       modalTitle.append(nameElement);
-      modalBody.append(heightElement);
-      // modalBody.append(typeElement);
-      modalBody.append(imageElement);
+      columnLeft.append(heightElement);
+      columnLeft.append(typeElement);
+      columnLeft.append(abilitiesElement);
+      columnRight.append(imageElement);
+      modalBody.append(columnLeft);
+      modalBody.append(columnRight);
     });
   }
 
@@ -75,7 +84,14 @@ let pokemonRepository = (function() {
       .then(function(details) {
         item.imageUrl = details.sprites.front_default;
         item.height = details.height;
-        item.types = Object.keys(details.types);
+        item.types = [];
+        details.types.forEach((e) => {
+                item.types.push(` <span>${capitalize(e.type.name)}</span>`);
+              });
+        item.abilities = [];
+        details.abilities.forEach((e) => {
+          item.abilities.push(` <span>${capitalize(e.ability.name)}</span>`);
+              });
       })
       .catch(function(e) {
         console.error(e);

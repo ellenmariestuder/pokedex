@@ -6,6 +6,7 @@
 
 html, body {
   height: 100%;
+  display: flex;
 }
 
 .app-title, p {
@@ -107,10 +108,10 @@ button:hover, button:focus,
 }
 
 /* format images */
-#modal-image {
+/* #modal-image {
   vertical-align: middle;
   float: right;
-}
+} */
 
 .pokeball {
   height: 3rem;

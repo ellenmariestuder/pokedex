@@ -115,6 +115,7 @@ button:hover, button:focus,
 
 .pokeball {
   height: 3rem;
+  width: auto; 
   padding-right: 3px;
   vertical-align: top;
 }

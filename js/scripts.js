@@ -55,6 +55,7 @@ let pokemonRepository = (function() {
       $('modalBody').empty();
       $('columnLeft').empty();
       $('columnRight').empty();
+      $('modalRow').empty();
 
       let nameElement = $('<h1>' + capitalize(item.name) + '</h1>');
       let heightElement = $('<div>' + '<p>' + 'Height: ' + item.height + '</p>' + '</div>');
@@ -66,9 +67,9 @@ let pokemonRepository = (function() {
       imageElement.attr('id', 'modal-image');
 
       modalTitle.append(nameElement);
-      columnLeft.append(heightElement);
-      columnLeft.append(typeElement);
-      columnLeft.append(abilitiesElement);
+      columnLeft.append(heightElement,
+                        typeElement,
+                        abilitiesElement);
       columnRight.append(imageElement);
       modalRow.append(columnLeft);
       modalRow.append(columnRight);

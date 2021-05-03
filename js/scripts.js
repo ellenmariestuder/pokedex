@@ -71,8 +71,8 @@ let pokemonRepository = (function() {
                         typeElement,
                         abilitiesElement);
       columnRight.append(imageElement);
-      modalRow.append(columnLeft);
-      modalRow.append(columnRight);
+      modalRow.append(columnLeft,
+                      columnRight);
       modalBody.append(modalRow);
     });
   }

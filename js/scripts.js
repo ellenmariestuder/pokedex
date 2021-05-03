@@ -51,10 +51,10 @@ let pokemonRepository = (function() {
       let columnRight = $('.col__right');
       let modalRow = $('.modal__row');
 
-      $('modalTitle').html('');
-      $('modalBody').html('');
-      $('columnLeft').html('');
-      $('columnRight').html('');
+      $('modalTitle').empty();
+      $('modalBody').empty();
+      $('columnLeft').empty();
+      $('columnRight').empty();
 
       let nameElement = $('<h1>' + capitalize(item.name) + '</h1>');
       let heightElement = $('<div>' + '<p>' + 'Height: ' + item.height + '</p>' + '</div>');
@@ -71,7 +71,7 @@ let pokemonRepository = (function() {
       columnLeft.append(abilitiesElement);
       columnRight.append(imageElement);
       modalRow.append(columnLeft);
-      modalRow.append(columnRight); 
+      modalRow.append(columnRight);
       modalBody.append(modalRow);
     });
   }

@@ -51,11 +51,11 @@ let pokemonRepository = (function() {
       let columnRight = $('.col__right');
       let modalRow = $('.modal__row');
 
-      $('modalTitle').empty();
-      $('modalBody').empty();
-      $('columnLeft').empty();
-      $('columnRight').empty();
-      $('modalRow').empty();
+      $(modalTitle).empty();
+      $(modalBody).empty();
+      $(columnLeft).empty();
+      $(columnRight).empty();
+      $(modalRow).empty();
 
       let nameElement = $('<h1>' + capitalize(item.name) + '</h1>');
       let heightElement = $('<div>' + '<p>' + 'Height: ' + item.height + '</p>' + '</div>');

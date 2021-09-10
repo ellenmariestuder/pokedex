@@ -1,62 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <title>Simple JS App</title>
-  </head>
-  <body>
 
-    <div class="container-fluid">
-      <div class="header-section fix__top">
-        <img class="pokeball" src="https://lh3.googleusercontent.com/proxy/IRFq7cEbRAdZyhe1lht2NXh7hYikvJE-3QIiv82daSLxCumTmQXEuKDtkZMIjRXiqW5EPplrnOV8DPv6eIG4E9sHJhnz8r9R4fmwAwXE8JEVJ9H5K5-RZo44CPZ_4e_E6L4n" alt="pokeball image" />
-        <h1 class="app-title">Pokedex</h1>
-      </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="dist/styles.min.css">
+  <title>Simple JS App</title>
+</head>
 
-      <div class="body-section">
-        <ul class="pokemon-list list-group"></ul>
+<body>
 
-        <div class="modal" id="poke-modal" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
+  <div class="container-fluid">
+    <div class="header-section fix__top">
+      <!-- <img class="pokeball" src="https://lh3.googleusercontent.com/proxy/IRFq7cEbRAdZyhe1lht2NXh7hYikvJE-3QIiv82daSLxCumTmQXEuKDtkZMIjRXiqW5EPplrnOV8DPv6eIG4E9sHJhnz8r9R4fmwAwXE8JEVJ9H5K5-RZo44CPZ_4e_E6L4n" alt="pokeball image" /> -->
+      <img class="pokeball"
+        src="https://static.wikia.nocookie.net/pokemon-fano/images/6/6f/Poke_Ball.png/revision/latest/scale-to-width-down/767?cb=20140520015336"
+        alt="pokeball image" />
+      <h1 class="app-title">Pokedex</h1>
+    </div>
 
-              <div class="modal-header">
-                <h5 class="modal-title"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
+    <div class="body-section">
+      <ul class="pokemon-list list-group"></ul>
 
-              <div class="modal-body">
-                <div class="row modal__row">
-                  <div class="col__left col-md-8 p-2">
-                  </div>
-                  <div class="col__right col-md-4 ml-auto p-2">
-                  </div>
+      <div class="modal" id="poke-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5 class="modal-title"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <div class="row modal__row">
+                <div class="col__left col-md-8 p-2">
+                </div>
+                <div class="col__right col-md-4 ml-auto p-2">
                 </div>
               </div>
+            </div>
 
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="footer-section">
-        <img class="card-img__bottom fix__bottom" src="img/grass-border.jpg" alt="grass border" />
-      </div>
     </div>
 
+    <div class="footer-section">
+      <img class="card-img__bottom fix__bottom" src="img/grass-border.jpg" alt="grass border" />
+    </div>
+  </div>
 
-    <script src="js/promise-polyfill.js"></script>
-    <script src="js/fetch-polyfill.js"></script>
-    <script src="js/scripts.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+
+  <script src="dist/promise_polyfill.min.js"></script>
+  <script src="dist/fetch_polyfill.min.js"></script>
+  <script src="dist/scripts.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

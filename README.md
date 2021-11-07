@@ -1,4 +1,4 @@
-# simple-js-app
+# Pokedex
 
 Simple app that displays interactive list of
 pokemon. 

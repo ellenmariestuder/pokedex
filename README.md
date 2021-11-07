@@ -8,7 +8,7 @@ Bootstrap for app layout and formatting, and CSS for additional styling.
 
 <p align="center"> 
   <img src="pokedex.png"
-  title="Pokedex App" width="250px>
+  title="Pokedex App" width="250px">
 </p>
 
 # Features
